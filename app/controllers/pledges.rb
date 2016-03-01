@@ -6,11 +6,8 @@ MyApp.before "/pledges*" do
 end
 
 MyApp.get "/pledges" do
+  @pledges = Pledge.all
   erb :"pledges/index"
-end
-
-MyApp.get "/pledges/new" do
-  erb :"pledges/new"
 end
 
 MyApp.post "/pledges/create" do
@@ -24,18 +21,3 @@ MyApp.post "/pledges/create" do
   redirect "/gifts/#{@gift.id}"
 end
 
-MyApp.get "/pledges/:id" do
-  erb :"pledges/show"
-end
-
-MyApp.get "/pledges/:id/edit" do
-  erb :"pledges/edit"
-end
-
-MyApp.post "/pledges/:id/update" do
-  
-end
-
-MyApp.post "/pledges/:id/delete" do
-  
-end
