@@ -8,6 +8,7 @@ DB.define_column("users", "password", "string")
 DB.define_table("pledges")
 DB.define_column("pledges", "user_id", "integer")
 DB.define_column("pledges", "gift_id", "integer")
+DB.define_column("pledges", "amount", "float")
 
 DB.define_table("gifts")
 DB.define_column("gifts", "user_id", "integer")

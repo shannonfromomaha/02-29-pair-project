@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "gift_id"
+    t.float    "amount"
   end
 
   create_table "users", force: :cascade do |t|

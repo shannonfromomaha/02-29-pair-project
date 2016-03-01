@@ -5,6 +5,15 @@
 <p><b>Cost:</b>  <%= @gift.cost %></p>
 <p><b>Funded yet?</b>  <%= @gift.funded %></p>
 <br>
+<form action="/pledges/create" method="post">
+  <fieldset>
+    <legend>Create a new pledge</legend>
+    <br>Amount: <br>
+    <input type="integer" name="amount"> <br><br>    
+    <input type="hidden" name="gift" value="<%=@gift.id%>"><br><br>
+    <input type="submit">
+  </fieldset>
+</form>
 <br>
 <p><a href="/">Home</a></p>
 
