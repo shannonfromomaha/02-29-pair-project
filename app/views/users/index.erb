@@ -6,10 +6,10 @@
       <%= x.name %>
     </a>
   </p>
-  <form action="users/<%= x.id %>/delete" method "post">
+  <form action="users/<%= x.id %>/delete" method="post">
     <input type="submit" value="Delete">
   </form>
-    <form action="users/<%= x.id %>/edit" method "get">
+    <form action="users/<%= x.id %>/edit" method="get">
     <input type="submit" value="Update">
   </form>
 <% end %>

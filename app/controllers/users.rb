@@ -38,5 +38,5 @@ end
 MyApp.post "/users/:id/delete" do
   @user = User.find_by_id(params[:id]) 
   @user.delete
-  erb :"users/delete"
+  redirect "/"
 end
