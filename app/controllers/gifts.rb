@@ -1,4 +1,5 @@
 MyApp.get "/gifts" do
+  @gifts = Gift.all
   erb :"gifts/index"
 end
 
@@ -21,6 +22,7 @@ MyApp.post "/gifts/create" do
 end
 
 MyApp.get "/gifts/:id" do
+  @gift = Gift.find_by_id(params[:id]) 
   erb :"gifts/show"
 end
 

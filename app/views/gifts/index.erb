@@ -1,0 +1,15 @@
+<p>All gifts:</p>
+
+<% @gifts.each do |x| %>
+  <p>
+    <a href="gifts/<%= x.id %>">
+      <%= x.title %>: <%= x.recipient %>
+    </a>
+  </p>
+  <form action="gifts/<%= x.id %>/delete" method="post">
+    <input type="submit" value="Delete">
+  </form>
+    <form action="gifts/<%= x.id %>/edit" method="get">
+    <input type="submit" value="Update">
+  </form>
+<% end %>
