@@ -18,6 +18,7 @@ MyApp.post "/logins/create" do
   end
 end
 
-MyApp.post "/logins/:id/delete" do
-  
+MyApp.post "/logins/delete" do
+  session["user_id"] = nil
+  redirect "/"  
 end
