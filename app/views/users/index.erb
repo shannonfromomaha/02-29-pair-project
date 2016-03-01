@@ -1,2 +1,15 @@
-ALL USERS
+<p>All users:</p>
 
+<% @users.each do |x| %>
+  <p>
+    <a href="users/<%= x.id %>">
+      <%= x.name %>
+    </a>
+  </p>
+  <form action="users/<%= x.id %>/delete" method "post">
+    <input type="submit" value="Delete">
+  </form>
+    <form action="users/<%= x.id %>/edit" method "get">
+    <input type="submit" value="Update">
+  </form>
+<% end %>
