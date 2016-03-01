@@ -12,6 +12,7 @@ MyApp.post "/users/create" do
   @user.name = params["name"]
   @user.email = params["email"]
   @user.password = params["password"]
+  @user.save
   redirect "/users/#{@user.id}"
 end
 
@@ -21,11 +22,17 @@ MyApp.get "/users/:id" do
 end
 
 MyApp.get "/users/:id/edit" do
+  @user = User.find_by_id(params[:id]) 
   erb :"users/edit"
 end
 
 MyApp.post "/users/:id/update" do
-  
+  @user = User.find_by_id(params[:id])
+  @user.name = params["name"]
+  @user.email = params["email"]
+  @user.password = params["password"]
+  @user.save
+  redirect "/users/#{@user.id}"
 end
 
 MyApp.post "/users/:id/delete" do

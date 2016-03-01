@@ -1,0 +1,16 @@
+<form action="/users/create" method="post">
+  <fieldset>
+    <legend>Update user info</legend>
+    <br>Name: <br>
+    <input type="text" name="name" value="<%= @user.name %>"> <br><br>    
+    Email:<br>
+    <input type="text" name="email" value="<%= @user.email %>"><br><br>
+    Password: <br>
+    <input type="text" name="password" value="<%= @user.password %>"><br><br>
+    <input type="submit">
+  </fieldset>
+</form>
+
+<br>
+<br>
+<p><a href="/">Home</a></p>
