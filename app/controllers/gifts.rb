@@ -1,3 +1,10 @@
+MyApp.before "/gifts*" do
+  @user = User.find_by_id(session["user_id"]) 
+  if @user == nil
+    redirect "/logins/new"
+  end
+end
+
 MyApp.get "/gifts" do
   @gifts = Gift.all
   erb :"gifts/index"

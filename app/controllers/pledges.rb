@@ -1,3 +1,10 @@
+MyApp.before "/pledges*" do
+  @user = User.find_by_id(session["user_id"]) 
+  if @user == nil
+    redirect "/logins/new"
+  end
+end
+
 MyApp.get "/pledges" do
   erb :"pledges/index"
 end
