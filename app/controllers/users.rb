@@ -1,10 +1,6 @@
 MyApp.get "/users" do
-  users = User.all 
+  @users = User.all 
   erb :"users/index"
-end
-
-MyApp.get "/users/:id" do
-  erb :"users/show"
 end
 
 MyApp.get "/users/new" do
@@ -17,6 +13,11 @@ MyApp.post "/users/create" do
   @user.email = params["email"]
   @user.password = params["password"]
   redirect "/users/#{@user.id}"
+end
+
+MyApp.get "/users/:id" do
+  @user = User.find_by_id(params[:id])
+  erb :"users/show"
 end
 
 MyApp.get "/users/:id/edit" do
