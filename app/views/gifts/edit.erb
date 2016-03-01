@@ -1,0 +1,24 @@
+<form action="/gifts/<%= @gift.id %>/update" method="post">
+  <fieldset>
+    <legend>Edit your gift details:</legend><br>
+    Gift title: <br>
+    <input type="text" name="title" value="<%= @gift.title %>"> <br><br>    
+    Who is this gift for? <br>
+    <input type="text" name="recipient" value="<%= @gift.recipient %>"><br><br>
+    Why are you giving this gift?<br>
+    <input type="text" name="description" value="<%= @gift.description %>"><br><br>
+    Link: <i>(optional)</i> <br>
+    <input type="url" name="link" value="<%= @gift.link %>"><br><br>
+    Cost of gift: <br>
+    <input type="integer" name="cost" value="<%= @gift.cost %>"><br><br>
+    <input type="submit">
+  </fieldset>
+</form>
+
+<form action="/gifts/<%= @gift.id %>/delete" method="post">
+    <input type="submit" value="Delete">
+</form>
+
+<br>
+<br>
+<p><a href="/">Home</a></p>

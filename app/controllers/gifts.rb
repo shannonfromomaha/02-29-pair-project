@@ -27,13 +27,23 @@ MyApp.get "/gifts/:id" do
 end
 
 MyApp.get "/gifts/:id/edit" do
+  @gift = Gift.find_by_id(params[:id])
   erb :"gifts/edit"
 end
 
 MyApp.post "/gifts/:id/update" do
-  
+  @gift = Gift.find_by_id(params[:id])
+  @gift.title = params["title"]
+  @gift.recipient = params["recipient"]
+  @gift.description = params["description"]
+  @gift.link = params["link"]
+  @gift.cost = params["cost"]
+  @gift.save
+  redirect  "/gifts/#{@gift.id}"
 end
 
 MyApp.post "/gifts/:id/delete" do
-  
+  @gift = Gift.find_by_id(params[:id])
+  @gift.delete
+  redirect "/"
 end
