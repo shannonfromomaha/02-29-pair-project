@@ -12,6 +12,10 @@
 </p>
 <p><b>Funded yet?</b>  <%= @gift.funded %></p>
 <br>
+<% if @gift.funded == true %>
+  YAY YOU FUNDED THAT THING
+<% end %>
+
 <form action="/pledges/create" method="post">
   <fieldset>
     <legend>Create a new pledge</legend>

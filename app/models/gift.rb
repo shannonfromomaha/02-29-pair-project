@@ -12,6 +12,7 @@ class Gift < ActiveRecord::Base
     if total == self.cost
       
       self.funded = true
+      self.save
 
       #to gift creator
       @creator = User.find_by_id(self.user_id)
@@ -22,6 +23,7 @@ class Gift < ActiveRecord::Base
         
         @participants.each do |participant|
           Pony.mail(:to => participant[1], :from => 'shannonfromomaha@gmail.com', :subject => 'gift got bought!', :body => 'yay. you did it!')
+          binding.pry
         end
 
     else

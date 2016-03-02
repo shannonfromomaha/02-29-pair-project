@@ -22,6 +22,7 @@ MyApp.post "/pledges/create" do
     redirect "/gifts/#{@gift.id}"
   else
     @pledge.save
+    @gift.funded_trigger
     redirect "/gifts/#{@gift.id}"
   end
 end
