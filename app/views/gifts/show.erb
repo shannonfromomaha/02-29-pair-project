@@ -3,6 +3,11 @@
 <p><b>Description:</b>  <%= @gift.description %></p>
 <p><b>Link:</b>  <%= @gift.link %></p>
 <p><b>Cost:</b>  <%= @gift.cost %></p>
+<p><b>Pledges:</b>
+  <%@pledges.each do |x|%>
+    <%= x.key.name %> donated <%= x.value %>
+  <% end %>
+</p>
 <p><b>Funded yet?</b>  <%= @gift.funded %></p>
 <br>
 <form action="/pledges/create" method="post">
