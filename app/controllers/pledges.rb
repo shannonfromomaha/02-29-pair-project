@@ -11,14 +11,17 @@ MyApp.get "/pledges" do
 end
 
 MyApp.post "/pledges/create" do
-  binding.pry
   @gift = Gift.find_by_id(params[:gift])
   @pledge = Pledge.new
   @pledge.amount = (params[:amount]).to_f.round(2)
   @pledge.user_id = session[:user_id]
   @pledge.gift_id = params[:gift]
-  @pledge.save
-
-  redirect "/gifts/#{@gift.id}"
+  @total, @remaining = @gift.pledge_math
+  if @pledge.amount > @remaining.to_f
+    redirect "/users"
+  else
+    @pledge.save
+    redirect "/gifts/#{@gift.id}"
+  end
 end
 
