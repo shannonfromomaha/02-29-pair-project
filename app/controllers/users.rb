@@ -18,6 +18,7 @@ MyApp.post "/users/create" do
   @user.email = params["email"]
   @user.password = params["password"]
   @user.save
+  #sends an email to the new user about their new account
   Pony.mail(:to => @user.email, :from => 'shannonfromomaha@gmail.com', :subject => 'new user!', :body => 'yay.')
 
   redirect "/users/#{@user.id}"
