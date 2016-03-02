@@ -18,7 +18,7 @@ MyApp.post "/pledges/create" do
   @pledge.gift_id = params[:gift]
   @total, @remaining = @gift.pledge_math
   if @pledge.amount > @remaining.to_f
-    @over = true
+    session["over_pledged"] = true
     redirect "/gifts/#{@gift.id}"
   else
     @pledge.save

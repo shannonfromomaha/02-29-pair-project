@@ -32,6 +32,8 @@ MyApp.get "/gifts/:id" do
   @gift = Gift.find_by_id(params[:id]) 
   @pledges = Pledge.collect_pledges(@gift.id)
   @total, @remaining = @gift.pledge_math
+  @over_pledged = session["over_pledged"]
+  session["over_pledged"] = false
   erb :"gifts/show"
 end
 
