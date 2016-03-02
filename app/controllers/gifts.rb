@@ -31,7 +31,7 @@ end
 MyApp.get "/gifts/:id" do
   @gift = Gift.find_by_id(params[:id]) 
   @pledges = Pledge.collect_pledges(@gift.id)
-  binding.pry
+  @total, @remaining = @gift.pledge_math
   erb :"gifts/show"
 end
 
