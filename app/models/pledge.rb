@@ -6,11 +6,11 @@ class Pledge < ActiveRecord::Base
 # Returns a hash of user objects and their pledges to this gift
   def self.collect_pledges(gift_id)
     x = Pledge.where("gift_id" => gift_id)
-    pledges = {}
+    pledges = []
     x.each do |pledge|
       user = User.find_by_id(pledge.user_id)
-      amount = pledge.amount
-      pledges[user] = amount
+      y = [user.name, user.email, pledge.amount]
+      pledges << y
     end
     return pledges
   end

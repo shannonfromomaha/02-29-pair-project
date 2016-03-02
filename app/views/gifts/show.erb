@@ -5,7 +5,7 @@
 <p><b>Cost:</b>  <%= @gift.cost %></p>
 <p><b>Pledges:</b>
   <%@pledges.each do |x|%>
-    <%= x.key.name %> donated <%= x.value %>
+    <p><%= x[0] %> pledged <%= x[-1]%></p>
   <% end %>
 </p>
 <p><b>Funded yet?</b>  <%= @gift.funded %></p>
