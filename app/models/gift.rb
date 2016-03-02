@@ -3,7 +3,7 @@ class Gift < ActiveRecord::Base
   def pledge_math
     pledges = Pledge.where("gift_id" => self.id)
     total = pledges.sum(:amount)
-    remaining = (self.cost - total).round(2)
+    remaining = '%.2f' % (self.cost - total)
     return total, remaining
   end
 

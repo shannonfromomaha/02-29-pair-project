@@ -11,11 +11,12 @@ MyApp.get "/pledges" do
 end
 
 MyApp.post "/pledges/create" do
-  @gift = Gift.find_by_id(params["gift"])
+  binding.pry
+  @gift = Gift.find_by_id(params[:gift])
   @pledge = Pledge.new
-  @pledge.amount = params["amount"]
-  @pledge.user_id = session["user_id"]
-  @pledge.gift_id = params["gift"]
+  @pledge.amount = (params[:amount]).to_f.round(2)
+  @pledge.user_id = session[:user_id]
+  @pledge.gift_id = params[:gift]
   @pledge.save
 
   redirect "/gifts/#{@gift.id}"
