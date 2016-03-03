@@ -11,7 +11,7 @@ end
 # processes new log in form
 MyApp.post "/logins/create" do
   @user = User.find_by_email(params[:email])
-  if @user.nil?
+  if @user == nil
     redirect "/users/new"
   elsif @user.password == params[:password]
     session["user_id"] = @user.id

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text     "description"
     t.string   "link"
     t.string   "recipient"
-    t.float    "cost"
+    t.integer  "cost"
     t.boolean  "funded"
   end
 

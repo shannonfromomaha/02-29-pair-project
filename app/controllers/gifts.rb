@@ -1,7 +1,8 @@
 # limits access to logged in users
 MyApp.before "/gifts*" do
   @user = User.find_by_id(session["user_id"])
-  if @user.nil? redirect "/logins/new"
+  if @user == nil 
+    redirect "/logins/new"
   end
 end
 
@@ -23,7 +24,7 @@ MyApp.post "/gifts/create" do
   @gift.recipient = params["recipient"]
   @gift.description = params["description"]
   @gift.link = params["link"]
-  @gift.cost = params["cost"].to_f.round(2)
+  @gift.cost = (params["cost"]).to_f.round(2)
   @gift.user_id = session["user_id"]
   @gift.funded = false
   @gift.save
