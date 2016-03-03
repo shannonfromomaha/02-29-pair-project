@@ -8,7 +8,7 @@
     <p><%= x[0] %> pledged <%= '%.2f' % x[-1] %></p>
   <% end %>
 
-<p>Total = <%= '%.2f' % @total%> (Remaining: <%= @remaining%>)</p>
+<p>Total = <%= '%.2f' % @total%> (Remaining: <%= '%.2f' % @remaining%>)</p>
 
 <p><b>Funded yet?</b> <%= @gift.funded %></p>
 <br>
@@ -28,7 +28,7 @@
       <input type="hidden" name="gift" value="<%=@gift.id%>"><br><br>
       <input type="submit">
       <% if @over_pledged == true %>
-        <p>You have exceeded the remaining remainder of the gift cost. Please   contribute <%= @remaining %> or less.</p>
+        <p>You have exceeded the remaining remainder of the gift cost. Please   contribute <%= '%.2f' % @remaining %> or less.</p>
       <% end %>
     </fieldset>
   </form>
