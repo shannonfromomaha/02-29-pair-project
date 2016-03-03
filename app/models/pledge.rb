@@ -1,9 +1,11 @@
 class Pledge < ActiveRecord::Base
-# a class method to find pledges
+
+# a Class method to find all pledges for a gift
 #
 # "gift_id" = the id of the gift we're looking for
 #
-# Returns a hash of user objects and their pledges to this gift
+# Returns Array of Arrays with user/pledge information
+
   def self.collect_pledges(gift_id)
     x = Pledge.where("gift_id" => gift_id)
     pledges = []

@@ -1,11 +1,14 @@
+#sends people home
 MyApp.get "/" do
   erb :"home"
 end
 
+#shows form for new log in
 MyApp.get "/logins/new" do
   erb :"logins/new"
 end
 
+#processes new log in form
 MyApp.post "/logins/create" do
   @user = User.find_by_email(params[:email])
   if @user == nil
@@ -18,6 +21,7 @@ MyApp.post "/logins/create" do
   end
 end
 
+#logs user out
 MyApp.post "/logins/delete" do
   session["user_id"] = nil
   redirect "/"  

@@ -1,4 +1,9 @@
 class Gift < ActiveRecord::Base
+
+  # pledge_math calculates pledges on this gift
+  # must set two variables, ex: x,y = gift.pledge_math
+  #
+  # Returns Array of two values, total pledges and remaining cost of gift.
   
   def pledge_math
     pledges = Pledge.where("gift_id" => self.id)
@@ -6,6 +11,10 @@ class Gift < ActiveRecord::Base
     remaining = '%.2f' % (self.cost - total)
     return total, remaining
   end
+
+  # funded_trigger calculates if contributions = cost of gift
+  #
+  # Returns Boolean of funded status
 
   def funded_trigger
     total, remaining = self.pledge_math
