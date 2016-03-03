@@ -17,12 +17,26 @@ MyApp.post "/pledges/create" do
   @pledge.user_id = session[:user_id]
   @pledge.gift_id = params[:gift]
   @total, @remaining = @gift.pledge_math
+  
   if @pledge.amount > @remaining.to_f
     session["over_pledged"] = true
     redirect "/gifts/#{@gift.id}"
+  
   else
     @pledge.save
-    @gift.funded_trigger
+    if @gift.funded_trigger == true
+      #to gift creator
+      @creator = User.find_by_id(@gift.user_id)
+      Pony.mail(:to => @creator.email, :from => 'shannonfromomaha@gmail.com', :subject => 'your thing got funded!', :body => 'yay.')
+     
+      #to pledge participants
+      @participants = Pledge.collect_pledges(@gift.id)
+
+      @participants.each do |participant|
+        Pony.mail(:to => participant[1], :from => 'shannonfromomaha@gmail.c', :subject => 'gift got bought!', :body => 'yay. you did it!')
+      end
+    
+    end
     redirect "/gifts/#{@gift.id}"
   end
 end
