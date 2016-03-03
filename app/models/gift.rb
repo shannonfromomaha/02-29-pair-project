@@ -7,7 +7,7 @@ class Gift < ActiveRecord::Base
     pledges = Pledge.where("gift_id" => self.id)
     total = pledges.sum(:amount)
     remaining = '%.2f' % (self.cost - total)
-    return total, remaining
+    return total.to_f, remaining.to_f
   end
 
   # funded_trigger calculates if contributions = cost of gift
