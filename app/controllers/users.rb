@@ -1,9 +1,9 @@
 MyApp.get "/users" do
   @user = User.find_by_id(session["user_id"])
-  if @user == nil
+  if @user.nil?
     redirect "/logins/new"
   else
-    @users = User.all 
+    @users = User.all
     erb :"users/index"
   end
 end
@@ -18,7 +18,7 @@ MyApp.post "/users/create" do
   @user.email = params["email"]
   @user.password = params["password"]
   @user.save
-  #sends an email to the new user about their new account
+  # sends an email to the new user about their new account
   Pony.mail(:to => @user.email, :from => 'shannonfromomaha@gmail.com', :subject => 'new user!', :body => 'yay.')
 
   redirect "/users/#{@user.id}"
@@ -26,7 +26,7 @@ end
 
 MyApp.get "/users/:id" do
   @user = User.find_by_id(session["user_id"])
-  if @user == nil
+  if @user.nil?
     redirect "/logins/new"
   else
     @user = User.find_by_id(params[:id])
@@ -36,17 +36,17 @@ end
 
 MyApp.get "/users/:id/edit" do
   @user = User.find_by_id(session["user_id"])
-  if @user == nil
+  if @user.nil?
     redirect "/logins/new"
   else
-    @user = User.find_by_id(params[:id]) 
+    @user = User.find_by_id(params[:id])
     erb :"users/edit"
   end
 end
 
 MyApp.post "/users/:id/update" do
   @user = User.find_by_id(session["user_id"])
-  if @user == nil
+  if @user.nil?
     redirect "/logins/new"
   else
     @user = User.find_by_id(params[:id])
@@ -60,10 +60,10 @@ end
 
 MyApp.post "/users/:id/delete" do
   @user = User.find_by_id(session["user_id"])
-  if @user == nil
+  if @user.nil?
     redirect "/logins/new"
   else
-    @user = User.find_by_id(params[:id]) 
+    @user = User.find_by_id(params[:id])
     @user.delete
     redirect "/"
   end

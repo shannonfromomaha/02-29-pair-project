@@ -21,23 +21,23 @@ class PledgeTest < Minitest::Test
 
     @p = Pledge.new
     @p.gift_id = @g.id
-    @p.user_id = @u.id 
+    @p.user_id = @u.id
     @p.amount = 5.00
     @p.save
 
     @p2 = Pledge.new
     @p2.gift_id = @g.id
-    @p2.user_id = @u2.id 
+    @p2.user_id = @u2.id
     @p2.amount = 10.00
-    @p2.save  
-    # Your setup goes here.
+    @p2.save
   end
 
-  # Your tests are defined here.
   def test_collect_pledges
-    assert_includes(Pledge.collect_pledges(@g.id), [@u.name, @u.email,@p.amount])
-    assert_includes(Pledge.collect_pledges(@g.id), [@u2.name, @u2.email, @p2.amount])
-    refute_includes(Pledge.collect_pledges(@g2.id),[@u2.name, @u2.email, @p2.amount])
+    assert_includes(Pledge.collect_pledges(@g.id),
+    [@u.name, @u.email, @p.amount])
+    assert_includes(Pledge.collect_pledges(@g.id),
+    [@u2.name, @u2.email, @p2.amount])
+    refute_includes(Pledge.collect_pledges(@g2.id),
+    [@u2.name, @u2.email, @p2.amount])
   end
-
 end

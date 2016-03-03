@@ -1,8 +1,7 @@
 # limits access to logged in users
 MyApp.before "/gifts*" do
-  @user = User.find_by_id(session["user_id"]) 
-  if @user == nil
-    redirect "/logins/new"
+  @user = User.find_by_id(session["user_id"])
+  if @user.nil? redirect "/logins/new"
   end
 end
 
@@ -24,7 +23,7 @@ MyApp.post "/gifts/create" do
   @gift.recipient = params["recipient"]
   @gift.description = params["description"]
   @gift.link = params["link"]
-  @gift.cost = (params["cost"]).to_f.round(2)
+  @gift.cost = params["cost"].to_f.round(2)
   @gift.user_id = session["user_id"]
   @gift.funded = false
   @gift.save
@@ -33,14 +32,14 @@ end
 
 # unique page for individual gift (includes pledge form)
 MyApp.get "/gifts/:id" do
-  @gift = Gift.find_by_id(params[:id]) 
+  @gift = Gift.find_by_id(params[:id])
   @pledges = Pledge.collect_pledges(@gift.id)
   @total, @remaining = @gift.pledge_math
   @over_pledged = session["over_pledged"]
   session["over_pledged"] = false
   erb :"gifts/show"
 end
- 
+
 # shows form for editing gift
 MyApp.get "/gifts/:id/edit" do
   @gift = Gift.find_by_id(params[:id])
@@ -56,7 +55,7 @@ MyApp.post "/gifts/:id/update" do
   @gift.link = params["link"]
   @gift.cost = params["cost"]
   @gift.save
-  redirect  "/gifts/#{@gift.id}"
+  redirect "/gifts/#{@gift.id}"
 end
 
 # processes delete gift form
