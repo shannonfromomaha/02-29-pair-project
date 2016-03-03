@@ -1,4 +1,4 @@
- <p><b>Gift title:</b> <%= @gift.title %></p>
+<p><b>Gift title:</b> <%= @gift.title %></p>
 <p><b>This present is for:</b>  <%= @gift.recipient %></p>
 <p><b>Description:</b>  <%= @gift.description %></p>
 <p><b>Link:</b>  <%= @gift.link %></p>
@@ -12,24 +12,29 @@
 </p>
 <p><b>Funded yet?</b>  <%= @gift.funded %></p>
 <br>
+<p>
 <% if @gift.funded == true %>
   YAY YOU FUNDED THAT THING
 <% end %>
+</p>
+<br>
 
-<form action="/pledges/create" method="post">
-  <fieldset>
-    <legend>Create a new pledge</legend>
-    <br>Amount: <br>
-    <input type="integer" name="amount"> <br><br>    
-    <input type="hidden" name="gift" value="<%=@gift.id%>"><br><br>
-    <input type="submit">
-    <% if @over_pledged == true %>
-      <p>You have exceeded the remaining remainder of the gift cost. Please contribute <%= @remaining %> or less.</p>
-    <% end %>
-
-
-  </fieldset>
-</form>
+<% if @gift.funded == false %>
+  <form action="/pledges/create" method="post">
+    <fieldset>
+      <legend>Create a new pledge</legend>
+      <br>Amount: <br>
+      <input type="integer" name="amount"> <br><br>    
+      <input type="hidden" name="gift" value="<%=@gift.id%>"><br><br>
+      <input type="submit">
+      <% if @over_pledged == true %>
+        <p>You have exceeded the remaining remainder of the gift cost. Please   contribute <%= @remaining %> or less.</p>
+      <% end %>
+  
+  
+    </fieldset>
+  </form>
+<% end %>
 <br>
 <p><a href="/">Home</a></p>
 

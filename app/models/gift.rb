@@ -23,7 +23,6 @@ class Gift < ActiveRecord::Base
         
         @participants.each do |participant|
           Pony.mail(:to => participant[1], :from => 'shannonfromomaha@gmail.com', :subject => 'gift got bought!', :body => 'yay. you did it!')
-          binding.pry
         end
 
     else
