@@ -1,11 +1,15 @@
 class User < ActiveRecord::Base
   def pledged_gifts
     x = Pledge.where("user_id" => self.id)
-    gifts = []
-    x.each do |x|
-      gifts << Gift.find_by_id(x.gift_id)
+    if x == nil
+      return ""
+    else
+      gifts = []
+      x.each do |x|
+        gifts << Gift.find_by_id(x.gift_id)
+        return gifts
+      end
     end
-    return gifts
   end
   def get_errors
     return @errors
