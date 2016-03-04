@@ -14,6 +14,8 @@ end
 
 # shows form to create new gift
 MyApp.get "/gifts/new" do
+  @errors = session["errors"]
+  session["errors"] = nil
   erb :"gifts/new"
 end
 
@@ -27,8 +29,13 @@ MyApp.post "/gifts/create" do
   @gift.cost = (params["cost"]).to_f.round(2)
   @gift.user_id = session["user_id"]
   @gift.funded = false
-  @gift.save
-  redirect "/gifts/#{@gift.id}"
+  if @gift.is_valid == true
+    @gift.save
+    redirect "/gifts/#{@gift.id}"
+  else
+    session["errors"] = @gift.get_errors
+    redirect "/gifts/new"
+  end
 end
 
 # unique page for individual gift (includes pledge form)

@@ -13,7 +13,6 @@ class Gift < ActiveRecord::Base
   # funded_trigger calculates if contributions = cost of gift
   #
   # Returns Boolean of funded status
-
   def funded_trigger
     total, remaining = self.pledge_math
     if total == self.cost
@@ -21,5 +20,28 @@ class Gift < ActiveRecord::Base
       self.save
     end
     return self.funded
+  end
+  def get_errors
+    return @errors
+  end
+  def set_errors
+    @errors = []
+    if self.title == "" || nil
+      @errors << "Title cannot be blank"
+    end
+    if self.recipient == "" || nil
+      @errors << "Recipient cannot be blank"
+    end
+    if self.cost == nil || 0
+      @errors << "Cost must be formatted as <i>ex: 5.55</i>"
+    end
+  end
+  def is_valid
+    self.set_errors
+    if @errors.length > 0
+      return false
+    else
+      return true
+    end
   end
 end
