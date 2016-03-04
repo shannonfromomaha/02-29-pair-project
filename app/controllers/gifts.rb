@@ -27,9 +27,6 @@ MyApp.post "/gifts/create" do
   @gift.cost = (params["cost"]).to_f.round(2)
   @gift.user_id = session["user_id"]
   @gift.funded = false
-
-  binding.pry
-  
   @gift.save
   redirect "/gifts/#{@gift.id}"
 end

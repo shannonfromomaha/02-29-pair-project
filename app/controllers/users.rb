@@ -9,6 +9,8 @@ MyApp.get "/users" do
 end
 
 MyApp.get "/users/new" do
+  @errors = session["errors"]
+  session["errors"] = nil
   erb :"users/new"
 end
 
@@ -17,11 +19,15 @@ MyApp.post "/users/create" do
   @user.name = params["name"]
   @user.email = params["email"]
   @user.password = params["password"]
-  @user.save
-  # sends an email to the new user about their new account
-  Pony.mail(:to => @user.email, :from => 'shannonfromomaha@gmail.com', :subject => 'new user!', :body => 'yay.')
-
-  redirect "/users/#{@user.id}"
+  if @user.is_valid == true
+    @user.save
+    # sends an email to the new user about their new account
+    Pony.mail(:to => @user.email, :from => 'shannonfromomaha@gmail.com', :subject => 'new user!', :body => 'yay.')
+    redirect "/users/#{@user.id}"
+  else
+    session["errors"] = @user.get_errors
+    redirect "/users/new"
+  end
 end
 
 MyApp.get "/users/:id" do
