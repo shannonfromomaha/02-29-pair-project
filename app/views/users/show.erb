@@ -1,7 +1,15 @@
-<p><%= @user.name %></p>
+<p>Hi, <%= @user.name %>!</p>
+<br>
+<p><a href="/gifts/new">Create a new gift</a></p>
+<br>
+<p><a href="/gifts">View gift pools you've created</a></p>
+<br>
+<p><a href="/gifts">View gifts you've contributed to</a></p>
+<br>
+<p><a href="/users/<%= @user.id %>/edit">Update your profile</a></p>
 <br>
 <p><a href="/">Home</a></p>
-
+<br>
 <form action="/logins/delete" method ="post">
 <input type="Submit" value="Log Out"></input>
 </form>
