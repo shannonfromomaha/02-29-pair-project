@@ -26,6 +26,8 @@ end
 
 MyApp.get "/users/:id" do
   @user = User.find_by_id(session["user_id"])
+  @created_gifts = Gift.where("user_id" => params[:id])
+  @pledged_gifts = @user.pledged_gifts
   if @user == nil
     redirect "/logins/new"
   else

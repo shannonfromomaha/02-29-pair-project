@@ -2,10 +2,22 @@
 <br>
 <p><a href="/gifts/new">Create a new gift</a></p>
 <br>
-<p><a href="/gifts">View gift pools you've created</a></p>
+<% if @created_gifts %>
+  <p><b>View gift pools you've created:</b></p>
+  <% @created_gifts.each do |gift| %>
+    <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
+     // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded%></p>
+  <% end %>
+<% end %>
 <br>
-<p><a href="/gifts">View gifts you've contributed to</a></p>
-<br>
+<% if @pledged_gifts %>
+  <p><b>View gift contributions you've made:</b></p>
+  <% @pledged_gifts.each do |gift| %>
+    <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
+     // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded%></p>
+  <% end %>
+<% end %>
+<br>  
 <p><a href="/users/<%= @user.id %>/edit">Update your profile</a></p>
 <br>
 <p><a href="/">Home</a></p>
