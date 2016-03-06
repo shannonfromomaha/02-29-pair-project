@@ -18,7 +18,7 @@ end
 MyApp.post "/pledges/create" do
   @gift = Gift.find_by_id(params[:gift])
   @pledge = Pledge.new
-  @pledge.amount = (params[:amount]).to_f.round(2)
+  @pledge.amount = (params[:amount].to_f.round(2))
   @pledge.user_id = session[:user_id]
   @pledge.gift_id = params[:gift]
   @total, @remaining = @gift.pledge_math

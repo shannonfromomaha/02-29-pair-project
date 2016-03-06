@@ -26,10 +26,11 @@ MyApp.post "/gifts/create" do
   @gift.recipient = params["recipient"]
   @gift.description = params["description"]
   @gift.link = params["link"]
-  @gift.cost = (params["cost"]).to_f.round(2)
+  @gift.cost = (params["cost"].to_f.round(2))
   @gift.user_id = session["user_id"]
   @gift.funded = false
   if @gift.is_valid == true
+    @gift.cost = @gift.cost * 100
     @gift.save
     redirect "/gifts/#{@gift.id}"
   else
