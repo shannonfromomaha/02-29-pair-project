@@ -14,4 +14,11 @@ class Pledge < ActiveRecord::Base
     end
     return pledges
   end
+
+  def convert_to_dollars
+  end
+
+  def redistribute
+  end
+
 end
