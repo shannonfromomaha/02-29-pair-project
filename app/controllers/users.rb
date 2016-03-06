@@ -21,6 +21,7 @@ MyApp.post "/users/create" do
   @user.password = params["password"]
   if @user.is_valid == true
     @user.save
+    session["user_id"] = @user.id
     # sends an email to the new user about their new account
     Pony.mail(:to => @user.email, :from => 'shannonfromomaha@gmail.com', :subject => 'new user!', :body => 'yay.')
     redirect "/users/#{@user.id}"
