@@ -7,6 +7,7 @@
 # "cost" (float)
 # "funded" (boolean) whether total pledges == cost
 class Gift < ActiveRecord::Base
+  include Errors  
   # pledge_math calculates pledges on this gift
   # must set two variables, ex: x,y = gift.pledge_math
   #
