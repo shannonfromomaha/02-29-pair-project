@@ -4,18 +4,15 @@
 # "password" (string)
 class User < ActiveRecord::Base
   include Errors
+  
   def pledged_gifts
-    x = Pledge.where("user_id" => self.id)
-    if x == nil
-      return ""
-    else
-      gifts = []
-      x.each do |x|
-        gifts << Gift.find_by_id(x.gift_id)
-        return gifts
-      end
+    gifts = []
+    Pledge.where("user_id" => self.id).each do |pledge|
+      gifts << Gift.find_by_id(pledge.gift_id)
+      return gifts
     end
   end
+  
   def set_errors
     @errors = []
     if self.name == ""
