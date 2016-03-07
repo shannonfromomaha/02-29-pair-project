@@ -13,8 +13,7 @@ class Pledge < ActiveRecord::Base
     pledges = []
     gift_pledges.each do |pledge|
       user = User.find_by_id(pledge.user_id)
-      gather_pledge_info = [user.name, user.email, pledge.amount]
-      pledges << gather_pledge_info
+      pledges << [user.name, user.email, pledge.amount]
     end
     return pledges
   end
