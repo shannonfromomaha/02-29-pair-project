@@ -9,12 +9,12 @@ class Pledge < ActiveRecord::Base
   #
   # Returns Array of Arrays with user/pledge information
   def self.collect_pledges(gift_id)
-    x = Pledge.where("gift_id" => gift_id)
+    gift_pledges = Pledge.where("gift_id" => gift_id)
     pledges = []
-    x.each do |pledge|
+    gift_pledges.each do |pledge|
       user = User.find_by_id(pledge.user_id)
-      y = [user.name, user.email, pledge.amount]
-      pledges << y
+      gather_pledge_info = [user.name, user.email, pledge.amount]
+      pledges << gather_pledge_info
     end
     return pledges
   end
