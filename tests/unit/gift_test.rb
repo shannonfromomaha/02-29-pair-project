@@ -1,6 +1,10 @@
 require 'test_helper'
-
+# tests for methods in the Gift model
+# setup creates users, gifts and pledges in the test database
+# test_pledge_math tests the pledge_math method
+# test_funded_trigger tests the funded_trigger method
 class GiftTest < Minitest::Test
+  # sets up a gift database
   def setup
     super
     @user_a = User.new
@@ -41,14 +45,18 @@ class GiftTest < Minitest::Test
     @pledge_c.amount = 10.00
     @pledge_c.save
   end
-
+# tests method that calculates all pledges on a gift
+#
+# pledge math method returns Array of total pledges and remaining gift cost
   def test_pledge_math
     assert_equal([15, 5], @gift_a.pledge_math)
     assert_equal([10, 90], @gift_b.pledge_math)
     refute_equal([10, 5], @gift_a.pledge_math)
     refute_equal([90, 10], @gift_b.pledge_math)
   end
-
+# tests method that calculates if all pledges = cost of gift
+#
+# funded_trigger method returns Boolean of funded status
   def test_funded_trigger
     @pledge_d = Pledge.new
     @pledge_d.gift_id = @gift_a.id
