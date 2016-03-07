@@ -30,9 +30,6 @@ class Gift < ActiveRecord::Base
     end
     return self.funded
   end
-  def get_errors
-    return @errors
-  end
   def set_errors
     @errors = []
     if self.title == ""
@@ -45,12 +42,3 @@ class Gift < ActiveRecord::Base
       @errors << "Cost must be formatted as <i>ex: 5.55</i>"
     end
   end
-  def is_valid
-    self.set_errors
-    if @errors.length > 0
-      return false
-    else
-      return true
-    end
-  end
-end
