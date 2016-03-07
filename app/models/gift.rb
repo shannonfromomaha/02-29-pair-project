@@ -1,3 +1,11 @@
+# gifts table columns:
+# "user_id" (integer) -- who created gift
+# "title" (string)
+# "description" (text)
+# "link" (string) -- link to item in online store
+# "recipient" (string)
+# "cost" (float)
+# "funded" (boolean) whether total pledges == cost
 class Gift < ActiveRecord::Base
   # pledge_math calculates pledges on this gift
   # must set two variables, ex: x,y = gift.pledge_math
