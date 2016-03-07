@@ -1,4 +1,4 @@
-# User table columns:
+# users table columns:
 # "name" (string)
 # "email" (string)
 # "password" (string)

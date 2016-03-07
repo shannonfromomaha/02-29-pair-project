@@ -1,3 +1,7 @@
+# pledges table columns:
+# "user_id" (integer)
+# "gift_id" (integer)
+# "amount" (float)
 class Pledge < ActiveRecord::Base
   # a Class method to find all pledges for a gift
   #
