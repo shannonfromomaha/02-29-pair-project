@@ -3,6 +3,7 @@
 # "email" (string)
 # "password" (string)
 class User < ActiveRecord::Base
+  include Errors
   def pledged_gifts
     x = Pledge.where("user_id" => self.id)
     if x == nil
@@ -15,9 +16,6 @@ class User < ActiveRecord::Base
       end
     end
   end
-  def get_errors
-    return @errors
-  end
   def set_errors
     @errors = []
     if self.name == ""
@@ -28,14 +26,6 @@ class User < ActiveRecord::Base
     end
     if self.password == ""
       @errors << "Password cannot be blank"
-    end
-  end
-  def is_valid
-    self.set_errors
-    if @errors.length > 0
-      return false
-    else
-      return true
     end
   end
 end
