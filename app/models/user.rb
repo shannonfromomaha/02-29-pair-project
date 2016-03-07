@@ -1,3 +1,7 @@
+# User table columns:
+# "name" (string)
+# "email" (string)
+# "password" (string)
 class User < ActiveRecord::Base
   def pledged_gifts
     x = Pledge.where("user_id" => self.id)
