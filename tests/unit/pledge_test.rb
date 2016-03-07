@@ -1,6 +1,3 @@
-#tests for methods on the Pledge models--
-#setup creates users, gifts and pledges in the test database
-#test_collect_pledges tests the collect_pledges method
 require 'test_helper'
 
 class PledgeTest < Minitest::Test
