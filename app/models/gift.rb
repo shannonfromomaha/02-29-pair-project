@@ -29,10 +29,10 @@ class Gift < ActiveRecord::Base
     if self.title == "" || self.title == nil
       @errors << "Title cannot be blank"
     end
-    if self.recipient == "" || self.title == nil
+    if self.recipient == "" || self.recipient == nil
       @errors << "Recipient cannot be blank"
     end
-    if self.cost == nil || self.title == 0
+    if self.cost == nil || self.cost == 0
       @errors << "Cost must be formatted as <i>ex: 5.55</i>"
     end
   end
