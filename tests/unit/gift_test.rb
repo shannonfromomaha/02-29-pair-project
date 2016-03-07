@@ -3,58 +3,58 @@ require 'test_helper'
 class GiftTest < Minitest::Test
   def setup
     super
-    @u = User.new
-    @u.name = "Jillian"
-    @u.email = "jillian@jillian.com"
-    @u.save
+    @user = User.new
+    @user.name = "Jillian"
+    @user.email = "jillian@jillian.com"
+    @user.save
 
-    @u2 = User.new
-    @u2.name = "Shannon"
-    @u2.email = "shannon@jillian.com"
-    @u2.save
+    @user2 = User.new
+    @user2.name = "Shannon"
+    @user2.email = "shannon@jillian.com"
+    @user2.save
 
-    @g = Gift.new
-    @g.cost = 20.00
-    @g.funded = false
-    @g.save
+    @gift = Gift.new
+    @gift.cost = 20.00
+    @gift.funded = false
+    @gift.save
 
-    @g2 = Gift.new
-    @g2.cost = 100.00
-    @g2.funded = false
-    @g2.save
+    @gift2 = Gift.new
+    @gift2.cost = 100.00
+    @gift2.funded = false
+    @gift2.save
 
-    @p = Pledge.new
-    @p.gift_id = @g.id
-    @p.user_id = @u.id
-    @p.amount = 5.00
-    @p.save
+    @pledge = Pledge.new
+    @pledge.gift_id = @gift.id
+    @pledge.user_id = @user.id
+    @pledge.amount = 5.00
+    @pledge.save
 
-    @p2 = Pledge.new
-    @p2.gift_id = @g.id
-    @p2.user_id = @u2.id
-    @p2.amount = 10.00
-    @p2.save
+    @pledge2 = Pledge.new
+    @pledge2.gift_id = @gift.id
+    @pledge2.user_id = @user2.id
+    @pledge2.amount = 10.00
+    @pledge2.save
 
-    @p3 = Pledge.new
-    @p3.gift_id = @g2.id
-    @p3.user_id = @u2.id
-    @p3.amount = 10.00
-    @p3.save
+    @pledge3 = Pledge.new
+    @pledge3.gift_id = @gift2.id
+    @pledge3.user_id = @user2.id
+    @pledge3.amount = 10.00
+    @pledge3.save
   end
 
   def test_pledge_math
-    assert_equal([15, 5], @g.pledge_math)
-    assert_equal([10, 90], @g2.pledge_math)
-    refute_equal([10, 5], @g.pledge_math)
-    refute_equal([90, 10], @g2.pledge_math)
+    assert_equal([15, 5], @gift.pledge_math)
+    assert_equal([10, 90], @gift2.pledge_math)
+    refute_equal([10, 5], @gift.pledge_math)
+    refute_equal([90, 10], @gift2.pledge_math)
   end
 
   def test_funded_trigger
-    @p4 = Pledge.new
-    @p4.gift_id = @g.id
-    @p4.amount = 5.00
-    @p4.save
-    assert_equal(true, @g.funded_trigger)
-    refute_equal(true, @g2.funded_trigger)
+    @pledge4 = Pledge.new
+    @pledge4.gift_id = @gift.id
+    @pledge4.amount = 5.00
+    @pledge4.save
+    assert_equal(true, @gift.funded_trigger)
+    refute_equal(true, @gift2.funded_trigger)
   end
 end
