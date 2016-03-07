@@ -35,13 +35,13 @@ class Gift < ActiveRecord::Base
   end
   def set_errors
     @errors = []
-    if self.title == "" || self.title == nil
+    if self.title == ""
       @errors << "Title cannot be blank"
     end
-    if self.recipient == "" || self.recipient == nil
+    if self.recipient == ""
       @errors << "Recipient cannot be blank"
     end
-    if self.cost == nil || self.cost == 0
+    if self.cost == "" || self.cost == 0
       @errors << "Cost must be formatted as <i>ex: 5.55</i>"
     end
   end
