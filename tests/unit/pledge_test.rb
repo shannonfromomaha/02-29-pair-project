@@ -3,41 +3,41 @@ require 'test_helper'
 class PledgeTest < Minitest::Test
   def setup
     super
-    @u = User.new
-    @u.name = "Jillian"
-    @u.email = "jillian@jillian.com"
-    @u.save
+    @jillian = User.new
+    @jillian.name = "Jillian"
+    @jillian.email = "jillian@jillian.com"
+    @jillian.save
 
-    @u2 = User.new
-    @u2.name = "Shannon"
-    @u2.email = "shannon@jillian.com"
-    @u2.save
+    @shannon = User.new
+    @shannon.name = "Shannon"
+    @shannon.email = "shannon@jillian.com"
+    @shannon.save
 
-    @g = Gift.new
-    @g.save
+    @gift_banana= Gift.new
+    @gift_banana.save
 
-    @g2 = Gift.new
-    @g2.save
+    @gift_potato = Gift.new
+    @gift_potato.save
 
-    @p = Pledge.new
-    @p.gift_id = @g.id
-    @p.user_id = @u.id
-    @p.amount = 5.00
-    @p.save
+    @jillianpledge = Pledge.new
+    @jillianpledge.gift_id = @gift_banana.id
+    @jillianpledge.user_id = @jillian.id
+    @jillianpledge.amount = 5.00
+    @jillianpledge.save
 
-    @p2 = Pledge.new
-    @p2.gift_id = @g.id
-    @p2.user_id = @u2.id
-    @p2.amount = 10.00
-    @p2.save
+    @shannonpledge = Pledge.new
+    @shannonpledge.gift_id = @gift_banana.id
+    @shannonpledge.user_id = @shannon.id
+    @shannonpledge.amount = 10.00
+    @shannonpledge.save
   end
 
   def test_collect_pledges
-    assert_includes(Pledge.collect_pledges(@g.id),
-    [@u.name, @u.email, @p.amount])
-    assert_includes(Pledge.collect_pledges(@g.id),
-    [@u2.name, @u2.email, @p2.amount])
-    refute_includes(Pledge.collect_pledges(@g2.id),
-    [@u2.name, @u2.email, @p2.amount])
+    assert_includes(Pledge.collect_pledges(@gift_banana.id),
+    ["Jillian", "jillian@jillian.com", 5.00])
+    assert_includes(Pledge.collect_pledges(@gift_banana.id),
+    ["Shannon", "shannon@jillian.com", 10.00])
+    refute_includes(Pledge.collect_pledges(@gift_potato.id),
+    ["Shannon", "shannon@jillian.com", 5.00])
   end
 end
