@@ -13,14 +13,17 @@ def pledge_total
   @pledges.sum(:amount)
 end
 
+def cost_remainder
+  self.cost - pledge_total
+end
+
   # pledge_math calculates pledges on this gift
   # must set two variables, ex: x,y = gift.pledge_math
   #
   # Returns Array of two values, total pledges and remaining cost of gift.
   def pledge_math
     @pledges = Pledge.where("gift_id" => self.id)
-    remaining = self.cost - pledge_total
-    return pledge_total.to_f, remaining.to_f
+    return pledge_total.to_f, cost_remainder.to_f
   end
 
   # funded_trigger calculates if contributions = cost of gift
