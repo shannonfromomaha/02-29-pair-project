@@ -31,7 +31,7 @@ MyApp.post "/pledges/create" do
     # things happen if this new pledge funds the gift
     if @gift.funded_trigger == true
       # email to gift creator
-      User.find_by_id(@gift.user_id).funded_email_creator
+      User.find_by_id(@gift.user_id).funded_email_to_creator
       # email to pledge participants
       @participants = Pledge.collect_pledges(@gift.id)
 
