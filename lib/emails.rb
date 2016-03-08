@@ -1,16 +1,14 @@
-module Email
-  # this module WILL BE used in Pledge and User controllers
+module Emails
+  # this module WILL BE used in User model
   #
   #here's the email we send when a new user is created
-  def new_user_email(user_email)
-    Pony.mail(:to => user_email, :from => 'admin@kittypool.com', :subject => 'hey! new user!', :body => 'yay.')
+  def new_user_email
+    Pony.mail(:to => self.email, :from => 'admin@kittypool.com', :subject => 'hey! new user!', :body => 'yay.')
   end
   #
   #here's the email we send to gift creators when their gifts are funded
-  def funded_email_creator(user_email)
-    #fix this
-    @creator = User.find_by_id(@gift.user_id)
-    Pony.mail(:to => @creator.email, :from => 'shannonfromomaha@gmail.com', :subject => 'your thing got funded!', :body => 'yay.')
+  def funded_email_creator
+    Pony.mail(:to => @self.email, :from => 'admin@kittypool.com', :subject => 'the gift you created is now funded!', :body => 'yay! some people owe you money.')
   end
   #
   #here's the email we send to pledgers when a gift is fully funded
