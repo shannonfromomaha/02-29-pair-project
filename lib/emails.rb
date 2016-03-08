@@ -2,8 +2,8 @@ module Emails
   # this module WILL BE used in User model
   #
   #here's the email we send when a new user is created
-  def new_user_email
-    Pony.mail(:to => self.email, :from => 'shannonfromomaha@gmail.com.com', :subject => 'hey! new user!', :body => 'yay.')
+  def new_user_email(useremail)
+    Pony.mail(:to => 'shannonfromomaha@gmail.com', :from => 'shannonfromomaha@gmail.com.com', :subject => 'hey! new user!', :body => 'yay.')
   end
   #
   #here's the email we send to gift creators when their gifts are funded
