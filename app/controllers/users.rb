@@ -22,8 +22,7 @@ MyApp.post "/users/create" do
   if @user.is_valid == true
     @user.save
     # sends an email to the new user about their new account
-    e = Email.new
-    e.new_user_email(@user.email)
+    @user.new_user_email
     session["user_id"] = @user.id
     redirect "/users/#{@user.id}"
   else
