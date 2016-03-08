@@ -4,7 +4,6 @@
 # "password" (string)
 class User < ActiveRecord::Base
   include Errors
-  include Emails
   
   def pledged_gifts
     gifts = []
