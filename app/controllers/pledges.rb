@@ -33,11 +33,7 @@ MyApp.post "/pledges/create" do
       # email to gift creator
       User.find_by_id(@gift.user_id).funded_email_to_creator
       # email to pledge participants
-      @participants = Pledge.collect_pledges(@gift.id)
-
-      @participants.each do |participant|
-        Pony.mail(:to => participant[1], :from => 'shannonfromomaha@gmail.c', :subject => 'gift got bought!', :body => 'yay. you did it!')
-      end
+      
     end
     redirect "/gifts/#{@gift.id}"
   end
