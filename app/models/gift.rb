@@ -42,3 +42,4 @@ class Gift < ActiveRecord::Base
       @errors << "Cost must be formatted as <i>ex: 5.55</i>"
     end
   end
+end

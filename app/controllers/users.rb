@@ -22,7 +22,7 @@ MyApp.post "/users/create" do
   if @user.is_valid == true
     @user.save
     # sends an email to the new user about their new account
-    Pony.mail(:to => @user.email, :from => 'shannonfromomaha@gmail.com', :subject => 'new user!', :body => 'yay.')
+    @user.new_user_email
     session["user_id"] = @user.id
     redirect "/users/#{@user.id}"
   else
