@@ -12,9 +12,10 @@ module Emails
   end
   
   #here's the email we send to pledgers when a gift is fully funded
-  def funded_email_to_pledges(giftid)
-    Pledge.collect_pledges(giftid).each do |participant|
-      Pony.mail(:to => participant[1], :from => 'admin@kittypool.com', :subject => 'gift got bought!', :body => 'yay. you did it! now you owe money.')
+  def funded_email_to_pledges
+    Pledge.where("gift_id" => self.id).each do |pledge|
+      user = User.find_by_id(pledge.user_id)
+      Pony.mail(:to => user.email, :from => 'admin@kittypool.com', :subject => 'gift got bought!', :body => 'yay. you did it! now you owe money.')
     end
   end
 

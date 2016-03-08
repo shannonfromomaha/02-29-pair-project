@@ -33,7 +33,7 @@ MyApp.post "/pledges/create" do
       # email to gift creator
       User.find_by_id(@gift.user_id).funded_email_to_creator
       # email to pledge participants
-      funded_email_to_pledges(@gift.id)
+      @gift.funded_email_to_pledges
     end
     redirect "/gifts/#{@gift.id}"
   end

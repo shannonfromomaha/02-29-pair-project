@@ -8,6 +8,7 @@
 # "funded" (boolean) whether total pledges == cost
 class Gift < ActiveRecord::Base
   include Errors
+  include Emails
 def pledge_total
   @pledges.sum(:amount)
 end
