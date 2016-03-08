@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text     "description"
     t.string   "link"
     t.string   "recipient"
-    t.integer  "cost"
+    t.float    "cost"
     t.boolean  "funded"
   end
 
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "gift_id"
-    t.integer  "amount"
+    t.float    "amount"
   end
 
   create_table "users", force: :cascade do |t|

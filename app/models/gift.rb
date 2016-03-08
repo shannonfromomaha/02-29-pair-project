@@ -7,16 +7,20 @@
 # "cost" (float)
 # "funded" (boolean) whether total pledges == cost
 class Gift < ActiveRecord::Base
-  include Errors  
+  include Errors
+
+def pledge_total
+  @pledges.sum(:amount)
+end
+
   # pledge_math calculates pledges on this gift
   # must set two variables, ex: x,y = gift.pledge_math
   #
   # Returns Array of two values, total pledges and remaining cost of gift.
   def pledge_math
-    pledges = Pledge.where("gift_id" => self.id)
-    total = pledges.sum(:amount)
-    remaining = self.cost - total
-    return total.to_f, remaining.to_f
+    @pledges = Pledge.where("gift_id" => self.id)
+    remaining = self.cost - pledge_total
+    return pledge_total.to_f, remaining.to_f
   end
 
   # funded_trigger calculates if contributions = cost of gift
@@ -42,3 +46,4 @@ class Gift < ActiveRecord::Base
       @errors << "Cost must be formatted as <i>ex: 5.55</i>"
     end
   end
+end
