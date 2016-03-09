@@ -10,7 +10,8 @@ configure :production, :development do
       :encoding => 'utf8'
   )
 end
-configure :production do # I have a different hash for development settings.
+
+configure :production do 
 Pony.options = {
   :via => :smtp,
   :via_options => {
