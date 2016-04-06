@@ -1,22 +1,53 @@
-<p>Hi, <%= @user.name %>!</p>
-<br>
-<p><a href="/gifts/new">Create a new gift</a></p>
-<br>
-<% if @created_gifts %>
-  <p><b>View gift pools you've created:</b></p>
-  <% @created_gifts.each do |gift| %>
-    <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
-     // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded%></p>
+<div class="container">
+  <ul class="nav nav-pills navbar-static-top">
+    <li role="presentation"><a href="/">Home</a></li>
+    <li role="presentation" class="dropdown active">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Your Profile <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+      <li>line1</li>
+      <li>line2</li>
+      <li>line3</li>
+      <li>line4</li>
+      </ul>
+    </li>
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Gifts <span class="caret"></span>
+        <li>line1</li>
+        <li>line2</li>
+        <li>line3</li>
+        <li>line4</li>
+      </ul>
+    </li>
+  </ul>
+</div> 
+
+
+
+
+<div class="container">
+  <p>Hi, <%= @user.name %>!</p>
+  <br>
+  <p><a href="/gifts/new">Create a new gift</a></p>
+  <br>
+  <% if @created_gifts %>
+    <p><b>View gift pools you've created:</b></p>
+    <% @created_gifts.each do |gift| %>
+      <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
+       // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded%></ p>
+    <% end %>
   <% end %>
-<% end %>
-<br>
-<% if @pledged_gifts %>
-  <p><b>View gift contributions you've made:</b></p>
-  <% @pledged_gifts.each do |gift| %>
-    <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
-     // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded%></p>
+  <br>
+  <% if @pledged_gifts %>
+    <p><b>View gift contributions you've made:</b></p>
+    <% @pledged_gifts.each do |gift| %>
+      <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
+       // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded%></p>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
 <br>  
 <p><a href="/users/<%= @user.id %>/edit">Update your profile</a></p>
 <br>
@@ -24,4 +55,5 @@
 <br>
 <form action="/logins/delete" method ="post">
 <input type="Submit" value="Log Out"></input>
-</form>
+</form>  
+
