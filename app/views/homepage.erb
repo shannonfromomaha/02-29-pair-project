@@ -8,27 +8,18 @@
     <h1 class="block-title">Welcome to KittyPool</h1>
     <h4 class="text-muted">Buy stuff FOR your friends WITH your friends!</h4>
       <% if session["user_id"] == nil %>
-        <form action="/users/new" method= "get"> 
-          <button type="submit" class="btn btn-sm btn-primary-outline">Sign Up</  button>
-        </form>
-        <form action="logins/new" method= "get">
-          <button type="submit" class="btn btn-sm btn-primary-outline">Log In</ button>
-        </form>
-    
+        <div class="btn-group" role="group" aria-label="...">
+          <a href="/logins/new" class="btn btn-sm btn-primary-outline">Log In</a>
+          <a href="/users/new" class="btn btn-sm btn-primary-outline">Sign Up</a>
+        </div>
       <% else %>
-      <!-- these buttons work but look bad -->
-        <form action="/users/<%= session["user_id"] %>" method ="get">
-          <button type="submit" class="btn btn-sm btn-primary-outline">This is</button>
-        </form>
         <form action="/logins/delete" method ="post">
-          <button type="submit" class="btn btn-sm btn-primary-outline">What I have</button>
+          <div class="btn-group" role="group" aria-label="...">
+            <a href="/users/<%= session["user_id"] %>" class="btn btn-sm btn-primary-outline">View Your Profile</a>
+            <button type="submit" class="btn btn-sm btn-primary-outline">Log Out</button>
+          </div>
         </form>
       <% end %>
-      <!-- these buttons do nothing but look good-->
-    <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-sm btn-primary-outline">This is</button>
-      <button type="button" class="btn btn-sm btn-primary-outline">what i want</button>
-    </div> 
   </div>
 </div>
 <div class="container">
