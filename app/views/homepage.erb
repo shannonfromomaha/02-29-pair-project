@@ -1,7 +1,7 @@
-<div class="container">
+<!-- <div class="container">
   <h2>Welcome to KittyPool!</h2>
   <br>
-  <p>Here's where we explain what this crowd-funded gift-buying app does. Buy   stuff for your friends WITH your friends!</p>
+  <p>Here's where we explain what this crowd-funded gift-buying app does. Buy  stuff for your friends WITH your friends!</p>
   <br>
   <p><a href="/users/<%= session["user_id"] %>">View your account details</a></p>
   <br>
@@ -12,4 +12,17 @@
   <form action="/logins/delete" method ="post">
   <input type="Submit" value="Log Out"></input>
   </form>
+</div> -->
+<div class="container">
+  <div class="block text-center">
+    <h1 class="block-title">Welcome to KittyPool</h1>
+    <h4 class="text-muted">Buy stuff FOR your friends WITH your friends!</h4>
+    <% if session["user_id"] != nil %>
+      <button type="button" class="btn btn-sm btn-primary-outline">Sign Up</button>
+      <button type="button" class="btn btn-sm btn-primary-outline">Log In</button>
+    <% else %>
+      <button type="button" class="btn btn-sm btn-primary-outline">View Account Details</button>
+      <button type="button" class="btn btn-sm btn-primary-outline">Log Out</button>
+    <% end %>
+  </div>
 </div>
