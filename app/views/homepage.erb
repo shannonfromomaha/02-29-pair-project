@@ -1,13 +1,15 @@
-<h2>Welcome to KittyPool!</h2>
-<br>
-<p>Here's where we explain what this crowd-funded gift-buying app does. Buy stuff for your friends WITH your friends!</p>
-<br>
-<p><a href="/users/<%= session["user_id"] %>">View your account details</a></p>
-<br>
-<p><a href="/users/new">Create a new account</a></p>
-<br>
-<p><a href="/logins/new">Sign in to your account</a></p>
-<br>
-<form action="/logins/delete" method ="post">
-<input type="Submit" value="Log Out"></input>
-</form>
+<div class="container">
+  <h2>Welcome to KittyPool!</h2>
+  <br>
+  <p>Here's where we explain what this crowd-funded gift-buying app does. Buy   stuff for your friends WITH your friends!</p>
+  <br>
+  <p><a href="/users/<%= session["user_id"] %>">View your account details</a></p>
+  <br>
+  <p><a href="/users/new">Create a new account</a></p>
+  <br>
+  <p><a href="/logins/new">Sign in to your account</a></p>
+  <br>
+  <form action="/logins/delete" method ="post">
+  <input type="Submit" value="Log Out"></input>
+  </form>
+</div>
