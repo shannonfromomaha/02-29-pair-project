@@ -2,11 +2,13 @@
   <div class="block text-center">
     <h1 class="block-title">Welcome to KittyPool</h1>
     <h4 class="text-muted">Buy stuff FOR your friends WITH your friends!</h4>
+      
       <% if session["user_id"] == nil %>
         <div class="btn-group" role="group" aria-label="...">
           <a href="/logins/new" class="btn btn-sm btn-primary-outline">Log In</a>
           <a href="/users/new" class="btn btn-sm btn-primary-outline">Sign Up</a>
         </div>
+      
       <% else %>
         <form action="/logins/delete" method ="post">
           <div class="btn-group" role="group" aria-label="...">
