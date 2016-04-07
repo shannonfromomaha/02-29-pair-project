@@ -1,22 +1,25 @@
 <div class="container">
-  <p>Hi, <%= @user.name %>!</p>
-  <br>
-  <p><a href="/gifts/new">Create a new gift</a></p>
-  <br>
-  <% if @created_gifts %>
-    <p><b>View gift pools you've created:</b></p>
-    <% @created_gifts.each do |gift| %>
-      <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
-       // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded%></ p>
-    <% end %>
-  <% end %>
-  <br>
-  <% if @pledged_gifts %>
-    <p><b>View gift contributions you've made:</b></p>
-    <% @pledged_gifts.each do |gift| %>
-      <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
-       // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded%></p>
-    <% end %>
-  <% end %>
+  <div class="container">
+    <div class="block text-center">
+      <h1 class="block-title">Hi <%=@user.name %>!</h1>
+      <br>
+      <p><a href="/gifts/new">Create a new gift</a></p>
+      <br>
+      <% if @created_gifts %>
+        <p><b>View gift pools you've created:</b></p>
+        <% @created_gifts.each do |gift| %>
+          <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
+           // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded %></ p>
+        <% end %>
+      <% end %>
+      <br>
+      <% if @pledged_gifts %>
+        <p><b>View gift contributions you've made:</b></p>
+        <% @pledged_gifts.each do |gift| %>
+          <p><b>Gift:</b> <a href="/gifts/<%=gift.id%>"><%= gift.title%></a>
+           // <b>For:</b> <%= gift.recipient %> // <b>Funded?</b> <%= gift.funded %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
-
