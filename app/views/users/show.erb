@@ -6,12 +6,25 @@
       Your Profile <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-      <li><a href="/users/<%= session["user_id"] %>">View</a></li>
-      <li><a href="/users/<%= session["user_id"] %>/edit">Edit</a></li>
-      <li><a href="/users/<%= session["user_id"] %>">My Pledges</a></li>
+        <form action="/logins/delete" method ="post">
+          <li><a href="/users/<%= session["user_id"] %>">View</a></li>
+          <li><a href="/users/<%= session["user_id"] %>/edit">Edit</a></li>
+          <li><a href="/users/<%= session["user_id"] %>">My Pledges</a></li>
+          <li><input type="Submit" value="Log Out"></input></li>
+        </form>
       </ul>
     </li>
-    <li role="presentation" class="dropdown"><a href="#">Your Gifts</a></li>
+
+    <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Gifts <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/gifts">Find A Gift</a></li>
+        <li><a href="/gifts/new">Add New Gift</a></li>
+        <li><a href="/users/<%= session["user_id"] %>">See Your Gifts</a></li>
+      </ul>
+    </li>
   </ul>
 </div> 
 
