@@ -6,20 +6,12 @@
       Your Profile <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-      <li>line1</li>
-      <li>line2</li>
-      <li>line3</li>
-      <li>line4</li>
+      <li><a href="/users/<%= session["user_id"] %>">View</a></li>
+      <li><a href="/users/<%= session["user_id"] %>/edit">Edit</a></li>
+      <li><a href="/users/<%= session["user_id"] %>">My Pledges</a></li>
       </ul>
     </li>
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      Gifts <span class="caret"></span>
-        <li>line1</li>
-        <li>line2</li>
-        <li>line3</li>
-        <li>line4</li>
-      </ul>
-    </li>
+    <li role="presentation" class="dropdown"><a href="#">Your Gifts</a></li>
   </ul>
 </div> 
 
