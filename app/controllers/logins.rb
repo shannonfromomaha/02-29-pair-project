@@ -1,10 +1,12 @@
 # sends people home
 MyApp.get "/" do
+  session["current_page"] = "/home"
   erb :"homepage"
 end
 
 # shows form for new log in
 MyApp.get "/logins/new" do
+  session["current_page"] = "/home"
   erb :"logins/new"
 end
 

@@ -10,6 +10,7 @@ end
 #
 # administrative access not yet created
 MyApp.get "/pledges" do
+  session["current_page"] = "/gifts"
   @pledges = Pledge.all
   erb :"pledges/index"
 end

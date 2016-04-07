@@ -9,12 +9,14 @@ end
 # list of all gifts
 MyApp.get "/gifts" do
   @gifts = Gift.all
+  session["current_page"] = "/gifts" 
   erb :"gifts/index"
 end
 
 # shows form to create new gift
 MyApp.get "/gifts/new" do
   @errors = session["errors"]
+  session["current_page"] = "/gifts"
   session["errors"] = nil
   erb :"gifts/new"
 end
@@ -45,12 +47,14 @@ MyApp.get "/gifts/:id" do
   @total, @remaining = @gift.pledge_math
   @over_pledged = session["over_pledged"]
   session["over_pledged"] = false
+  session["current_page"] = "/gifts"
   erb :"gifts/show"
 end
 
 # shows form for editing gift
 MyApp.get "/gifts/:id/edit" do
   @gift = Gift.find_by_id(params[:id])
+  session["current_page"] = "/gifts"
   erb :"gifts/edit"
 end
 

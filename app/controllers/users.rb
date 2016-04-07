@@ -1,5 +1,6 @@
 MyApp.get "/users" do
   @user = User.find_by_id(session["user_id"])
+  session["current_page"] = "/users"
   if @user == nil
     redirect "/logins/new"
   else
@@ -11,6 +12,7 @@ end
 MyApp.get "/users/new" do
   @errors = session["errors"]
   session["errors"] = nil
+  session["current_page"] = "/users"
   erb :"users/new"
 end
 
@@ -33,6 +35,7 @@ end
 
 MyApp.get "/users/:id" do
   @user = User.find_by_id(session["user_id"])
+  session["current_page"] = "/users"
   @created_gifts = Gift.where("user_id" => params[:id])
   @pledged_gifts = @user.pledged_gifts
   if @user == nil
@@ -45,6 +48,7 @@ end
 
 MyApp.get "/users/:id/edit" do
   @user = User.find_by_id(session["user_id"])
+  session["current_page"] = "/users"
   if @user == nil
     redirect "/logins/new"
   else
